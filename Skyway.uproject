@@ -27,6 +27,14 @@
 		{
 			"Name": "OnlineSubsystemEOS",
 			"Enabled": true
+		},
+		{
+			"Name": "OnlineSubsystemOculus",
+			"Enabled": true
+		},
+		{
+			"Name": "OnlineSubsystemSteam",
+			"Enabled": true
 		}
 	]
 }

@@ -7,7 +7,6 @@
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Navigation/CrowdFollowingComponent.h"
 
-
 ABaseAIController::ABaseAIController(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer.SetDefaultSubobjectClass<UCrowdFollowingComponent>
     (TEXT("PathFollowingComponent")))
@@ -16,6 +15,16 @@ ABaseAIController::ABaseAIController(const FObjectInitializer& ObjectInitializer
     SetPerceptionComponent(*BaseAIPerceptionComponent);
 }
 
+void ABaseAIController::BeginPlay()
+{
+    Super::BeginPlay();
+    ABaseNPC* Chr = Cast<ABaseNPC>(GetPawn());
+    if(Chr)
+    {
+        Agent = Chr;
+        TeamId = FGenericTeamId(Agent->ID);
+    }
+}
 
 
 void ABaseAIController::OnPossess(APawn* InPawn)
@@ -37,5 +46,39 @@ void ABaseAIController::Tick(float DeltaTime)
     Super::Tick(DeltaTime);
     const auto AimActor = GetFocusOnActor();
     SetFocus(AimActor);
+}
+
+ETeamAttitude::Type ABaseAIController::GetTeamAttitudeTowards(const AActor& Other) const
+{
+    const APawn* OtherPawn = Cast<APawn>(&Other);
+    if (OtherPawn)
+        return ETeamAttitude::Neutral;
+
+    auto PlayerTI = Cast<IGenericTeamAgentInterface>(&Other);
+    IGenericTeamAgentInterface* BotTI = Cast<IGenericTeamAgentInterface>(OtherPawn->GetController());
+    if (BotTI && PlayerTI)
+        return ETeamAttitude::Neutral;
+
+    FGenericTeamId OtherActorTeamId = NULL;
+    if (BotTI)
+        OtherActorTeamId = BotTI->GetGenericTeamId();
+    else if (PlayerTI)
+        OtherActorTeamId = PlayerTI->GetGenericTeamId();
+    
+    FGenericTeamId ThisId = GetGenericTeamId();
+
+    if (OtherActorTeamId == 8)
+    {
+        return ETeamAttitude::Neutral;
+    }
+    else if (OtherActorTeamId == ThisId)
+    {
+        return ETeamAttitude::Friendly;
+    }
+    else
+    {
+        return ETeamAttitude::Hostile;
+    }
+        
 }
 
