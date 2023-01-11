@@ -48,21 +48,21 @@ void ABaseAIController::Tick(float DeltaTime)
     SetFocus(AimActor);
 }
 
-ETeamAttitude::Type ABaseAIController::GetTeamAttitudeTowards(const AActor& Other) const
+ ETeamAttitude::Type ABaseAIController::GetTeamAttitudeTowards(const AActor& Other) const
 {
     const APawn* OtherPawn = Cast<APawn>(&Other);
-    if (OtherPawn)
+    if (OtherPawn == nullptr)
         return ETeamAttitude::Neutral;
 
     auto PlayerTI = Cast<IGenericTeamAgentInterface>(&Other);
     IGenericTeamAgentInterface* BotTI = Cast<IGenericTeamAgentInterface>(OtherPawn->GetController());
-    if (BotTI && PlayerTI)
+    if (BotTI == nullptr && PlayerTI == nullptr)
         return ETeamAttitude::Neutral;
 
     FGenericTeamId OtherActorTeamId = NULL;
-    if (BotTI)
+    if (BotTI != nullptr)
         OtherActorTeamId = BotTI->GetGenericTeamId();
-    else if (PlayerTI)
+    else if (PlayerTI != nullptr)
         OtherActorTeamId = PlayerTI->GetGenericTeamId();
     
     FGenericTeamId ThisId = GetGenericTeamId();
