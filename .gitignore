@@ -6,6 +6,7 @@ Saved
 .vscode
 .vs
 Content/Developers
+.ignore
 *.VC.db
 *.opensdf
 *.opendb
