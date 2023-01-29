@@ -7,19 +7,21 @@
 #include "GenericTeamAgentInterface.h"
 #include "BaseCharacter.generated.h"
 
-// class UBehaviorTree;
-
 UCLASS()
 class SKYWAY_API ABaseCharacter : public ACharacter, public IAISightTargetInterface, public IGenericTeamAgentInterface
 {
     GENERATED_BODY()
 
 public:
-    UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "AI")
-    int32 ID = 0;
+    ABaseCharacter();
 
-    virtual FGenericTeamId GetGenericTeamId() const override { return TeamId; }
+    UFUNCTION(BlueprintGetter, Category = "AI")
+    const int32 GetId() { return ID; }
 
-protected:
-    FGenericTeamId TeamId;
+    UFUNCTION(BlueprintSetter, Category = "AI")
+    const void SetId(int32 NewId);
+
+private:
+    UPROPERTY(EditAnywhere, BlueprintGetter = GetId, BlueprintSetter = SetId, Category = "AI")
+    int32 ID;
 };
