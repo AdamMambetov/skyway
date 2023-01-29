@@ -23,7 +23,8 @@ public class Skyway : ModuleRules
 		PublicIncludePaths.AddRange(new string[]
 		{
 			"Skyway/Public/AI",
-			"Skyway/Private/AI/Tasks"
+			"Skyway/Private/AI/Tasks",
+			"Skyway/Public/Building"
 		});
 		
 	}
