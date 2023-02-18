@@ -1,5 +1,0 @@
-
-
-
-#include "MyBoxComponent.h"
-
