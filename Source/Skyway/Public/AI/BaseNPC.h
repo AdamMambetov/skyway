@@ -5,6 +5,7 @@
 #include "GameFramework/Character.h"
 #include "Perception/AISightTargetInterface.h"
 #include "GenericTeamAgentInterface.h"
+#include "BaseCharacter.h"
 #include "BaseNPC.generated.h"
 
 
@@ -15,7 +16,7 @@ class UBehaviorTree;
 
 
 UCLASS()
-class SKYWAY_API ABaseNPC : public ACharacter, public IAISightTargetInterface, public IGenericTeamAgentInterface
+class SKYWAY_API ABaseNPC : public ABaseCharacter
 {
 	GENERATED_BODY()
 	
