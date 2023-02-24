@@ -5,6 +5,7 @@
 #include "GameFramework/Character.h"
 #include "Perception/AISightTargetInterface.h"
 #include "GenericTeamAgentInterface.h"
+#include "ECharacters.h"
 #include "BaseCharacter.generated.h"
 
 UCLASS()
@@ -21,7 +22,13 @@ public:
     UFUNCTION(BlueprintSetter, Category = "AI")
     const void SetId(int32 NewId);
 
+    UFUNCTION(BlueprintGetter, Category = "BaseCharacter")
+    const ECharacters GetCharacter() { return Character; }
+
 private:
     UPROPERTY(EditAnywhere, BlueprintGetter = GetId, BlueprintSetter = SetId, Category = "AI")
     int32 ID;
+
+    UPROPERTY(EditDefaultsOnly, BlueprintGetter = GetCharacter, Category = "BaseCharacter")
+    ECharacters Character;
 };
