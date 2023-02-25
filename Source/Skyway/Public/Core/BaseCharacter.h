@@ -6,6 +6,7 @@
 #include "Perception/AISightTargetInterface.h"
 #include "GenericTeamAgentInterface.h"
 #include "ECharacters.h"
+#include "ECharacterState.h"
 #include "BaseCharacter.generated.h"
 
 UCLASS()
@@ -25,10 +26,20 @@ public:
     UFUNCTION(BlueprintGetter, Category = "BaseCharacter")
     const ECharacters GetCharacter() { return Character; }
 
+    UFUNCTION(BlueprintGetter, Category = "BaseCharacter")
+    const ECharacterState GetCharacterState() { return CharacterState; }
+
+    UFUNCTION(BlueprintSetter, Category = "BaseCharacter")
+    const void SetCharacterState(ECharacterState NewCharacterState);
+
 private:
     UPROPERTY(EditAnywhere, BlueprintGetter = GetId, BlueprintSetter = SetId, Category = "AI")
     int32 ID;
 
     UPROPERTY(EditDefaultsOnly, BlueprintGetter = GetCharacter, Category = "BaseCharacter")
     ECharacters Character;
+
+    UPROPERTY(Replicated, EditAnywhere, BlueprintGetter = GetCharacterState, //
+        BlueprintSetter = SetCharacterState, Category = "BaseCharacter")
+    ECharacterState CharacterState;
 };

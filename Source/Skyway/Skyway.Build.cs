@@ -16,7 +16,7 @@ public class Skyway : ModuleRules
 			"InputCore",
 			"GameplayTasks",
 			"NavigationSystem"
-			});
+		});
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 
@@ -24,7 +24,8 @@ public class Skyway : ModuleRules
 		{
 			"Skyway/Public/AI",
 			"Skyway/Private/AI/Tasks",
-			"Skyway/Public/Building"
+			"Skyway/Public/Building",
+			"Skyway/Public/Core",
 		});
 		
 	}
