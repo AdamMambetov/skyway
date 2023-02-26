@@ -22,7 +22,7 @@ void ABaseAIController::BeginPlay()
     if(Chr)
     {
         Agent = Chr;
-        TeamId = FGenericTeamId(Agent->ID);
+        TeamId = FGenericTeamId(Agent->GetId());
     }
 }
 
