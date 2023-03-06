@@ -6,7 +6,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 
 
-ABaseNPC::ABaseNPC(const FObjectInitializer& ObjInit):Super(ObjInit)
+ABaseNPC::ABaseNPC(const FObjectInitializer& ObjInit):Super()
 {
 	PrimaryActorTick.bCanEverTick = true;
 	AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
