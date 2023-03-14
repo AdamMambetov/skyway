@@ -9,8 +9,6 @@
 #include "BaseNPC.generated.h"
 
 
-
-
 class UBehaviorTree;
 
 
