@@ -15,6 +15,7 @@ UFindEnemyService::UFindEnemyService()
 
 void UFindEnemyService::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)
 {
+    GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Green, FString::Printf(TEXT("HELO")));
     const auto Blackboard = OwnerComp.GetBlackboardComponent();
     if(Blackboard)
     {
