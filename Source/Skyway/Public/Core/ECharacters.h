@@ -7,4 +7,5 @@ enum class ECharacters : uint8
     Bouncer UMETA(DisplayName = "Bouncer"),
     Slime UMETA(DisplayName = "Slime"),
     Driller UMETA(DisplayName = "Driller"),
+    Smasher UMETA(DisplayName = "Smasher"),
 };
