@@ -16,5 +16,5 @@ public:
 	virtual void ProvideContext(FEnvQueryInstance& QueryInstance, FEnvQueryContextData& ContextData) const override;
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI")
-	FName EnemyActorKeyName = "EnemyActor";
+	FName EnemyActorKeyName = "Enemy";
 };

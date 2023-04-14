@@ -10,12 +10,9 @@ AActor* UBaseAIPerceptionComponent::GetClosestEnemy() const
 {
     TArray<AActor*> PercieveActors;
     GetCurrentlyPerceivedActors(UAISense_Sight::StaticClass(), PercieveActors);
-    UE_LOG(LogTemp, Display, TEXT("Percieve Actors: %i"), PercieveActors.Num());
     if(PercieveActors.Num() == 0) return nullptr;
-
     const auto Controller = Cast<AAIController>(GetOwner());
     if(!Controller) return nullptr;
-
     const auto Pawn = Controller->GetPawn();
     if(!Pawn) return nullptr;
 
