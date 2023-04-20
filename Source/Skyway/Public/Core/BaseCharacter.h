@@ -1,3 +1,4 @@
+// Copyright UC Games, Inc. All Rights Reserved.
 
 #pragma once
 
@@ -8,6 +9,8 @@
 #include "ECharacters.h"
 #include "ECharacterState.h"
 #include "BaseCharacter.generated.h"
+
+class UBoxComponent;
 
 UCLASS()
 class SKYWAY_API ABaseCharacter : public ACharacter, public IAISightTargetInterface, public IGenericTeamAgentInterface
@@ -32,6 +35,36 @@ public:
     UFUNCTION(BlueprintSetter, Category = "BaseCharacter")
     const void SetCharacterState(ECharacterState NewCharacterState);
 
+    UFUNCTION(BlueprintGetter, Category = "BaseCharacter")
+    UBoxComponent* GetWeaponCollision() const { return WeaponCollision; }
+
+    UFUNCTION(Server, WithValidation, Reliable, //
+        BlueprintCallable, Category = "BaseCharacter", meta = (DisplayName = "EnableWeaponCollision_SERVER"))
+    void Server_EnableWeaponCollision();
+    bool Server_EnableWeaponCollision_Validate();
+    void Server_EnableWeaponCollision_Implementation();
+
+    UFUNCTION(Server, WithValidation, Reliable, //
+        BlueprintCallable, Category = "BaseCharacter", meta = (DisplayName = "DisableWeaponCollision_SERVER"))
+    void Server_DisableWeaponCollision();
+    bool Server_DisableWeaponCollision_Validate();
+    void Server_DisableWeaponCollision_Implementation();
+
+protected:
+    UFUNCTION(BlueprintNativeEvent, Category = "BaseCharacter")
+    float GetWeaponDamage();
+    float GetWeaponDamage_Implementation() { return 0.f; }
+
+private:
+    UFUNCTION(Category = "BaseCharacter")
+    void OnWeaponCollisionBeginOverlapHandler(    //
+        UPrimitiveComponent* OverlappedComponent, //
+        AActor* OtherActor,                       //
+        UPrimitiveComponent* OtherComp,           //
+        int32 OtherBodyIndex,                     //
+        bool bFromSweep,                          //
+        const FHitResult& SweepResult);
+
 private:
     UPROPERTY(EditAnywhere, BlueprintGetter = GetId, BlueprintSetter = SetId, Category = "AI")
     int32 ID;
@@ -42,4 +75,8 @@ private:
     UPROPERTY(Replicated, EditAnywhere, BlueprintGetter = GetCharacterState, //
         BlueprintSetter = SetCharacterState, Category = "BaseCharacter")
     ECharacterState CharacterState;
+
+protected:
+    UPROPERTY(Replicated, EditAnywhere, BlueprintGetter = GetWeaponCollision, Category = "BaseCharacter")
+    UBoxComponent* WeaponCollision;
 };
