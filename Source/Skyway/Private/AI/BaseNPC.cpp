@@ -16,7 +16,7 @@ ABaseNPC::ABaseNPC(const FObjectInitializer& ObjInit):Super()
 	if(GetCharacterMovement())
 	{
 		GetCharacterMovement()->bUseControllerDesiredRotation = true;
-		GetCharacterMovement()->RotationRate = FRotator(0.0f, 90.0f, 0.0f); 
+		GetCharacterMovement()->RotationRate = FRotator(0.0f, 360.0f, 0.0f); 
 	}
 }
 
