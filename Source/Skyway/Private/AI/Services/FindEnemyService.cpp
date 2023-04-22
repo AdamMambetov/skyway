@@ -10,13 +10,13 @@
 UFindEnemyService::UFindEnemyService()
 {
     NodeName = "Find Enemy";
-
 }
 
 void UFindEnemyService::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)
-{
-    GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Green, FString::Printf(TEXT("HELO")));
+{   
     const auto Blackboard = OwnerComp.GetBlackboardComponent();
+   
+    GEngine->AddOnScreenDebugMessage(-1, DeltaSeconds, FColor::Green, FString::Printf(TEXT("NAME:   %s"), *OwnerComp.GetFullName()));
     if(Blackboard)
     {
         const auto Controller = OwnerComp.GetAIOwner();

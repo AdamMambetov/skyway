@@ -15,5 +15,6 @@ class SKYWAY_API UBaseAIPerceptionComponent : public UAIPerceptionComponent
 	GENERATED_BODY()
 
 public:
+	UFUNCTION(BlueprintCallable, BlueprintPure)
 	AActor* GetClosestEnemy() const;
 };

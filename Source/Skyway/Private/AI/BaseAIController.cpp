@@ -11,19 +11,12 @@ ABaseAIController::ABaseAIController(const FObjectInitializer& ObjectInitializer
 	: Super(ObjectInitializer.SetDefaultSubobjectClass<UCrowdFollowingComponent>
     (TEXT("PathFollowingComponent")))
 {
-    BaseAIPerceptionComponent = CreateDefaultSubobject<UBaseAIPerceptionComponent>("BasePerceptionComponent");
-    SetPerceptionComponent(*BaseAIPerceptionComponent);
 }
 
 void ABaseAIController::BeginPlay()
 {
     Super::BeginPlay();
-    ABaseNPC* Chr = Cast<ABaseNPC>(GetPawn());
-    if(Chr)
-    {
-        Agent = Chr;
-        TeamId = FGenericTeamId(Agent->GetId());
-    }
+    
 }
 
 
@@ -33,20 +26,15 @@ void ABaseAIController::OnPossess(APawn* InPawn)
 
     const auto BaseNPC = Cast<ABaseNPC>(InPawn);
     if(BaseNPC) RunBehaviorTree(BaseNPC->BehaviorTreeAsset);
+    ABaseNPC* Chr = Cast<ABaseNPC>(GetPawn());
+    if(Chr)
+    {
+        Agent = Chr;
+        TeamId = FGenericTeamId(Agent->GetId());
+    }
 }
 
-AActor* ABaseAIController::GetFocusOnActor() const
-{
-    if(!GetBlackboardComponent()) return nullptr;
-    return Cast<AActor>(GetBlackboardComponent()->GetValueAsObject(FocusOnKeyName));
-}
 
-void ABaseAIController::Tick(float DeltaTime)
-{
-    Super::Tick(DeltaTime);
-    const auto AimActor = GetFocusOnActor();
-    SetFocus(AimActor);
-}
 
  ETeamAttitude::Type ABaseAIController::GetTeamAttitudeTowards(const AActor& Other) const
 {
