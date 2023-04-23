@@ -1,4 +1,4 @@
-
+// Copyright UC Games, Inc. All Rights Reserved.
 
 #pragma once
 
