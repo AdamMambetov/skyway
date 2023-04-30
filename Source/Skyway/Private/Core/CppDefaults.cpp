@@ -13,7 +13,7 @@ TArray<FGameplayTag> UCppDefaults::GetChildrensByTag(FGameplayTag Id, UDataTable
     {
         FGameplayTag Tag = FGameplayTag::RequestGameplayTag(RowName);
 
-        if (!Tag.MatchesTag(Id)) continue;
+            if (!Tag.MatchesTag(Id)) continue;
 
         ReturnValue.Add(Tag);
     }
