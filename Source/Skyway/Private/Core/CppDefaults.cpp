@@ -2,6 +2,7 @@
 
 #include "Core/CppDefaults.h"
 #include "GameplayTagContainer.h"
+#include "SkywayDeveloperSettings.h"
 
 TArray<FGameplayTag> UCppDefaults::GetChildrensByTag(FGameplayTag Id, UDataTable* DataTable)
 {
@@ -18,4 +19,24 @@ TArray<FGameplayTag> UCppDefaults::GetChildrensByTag(FGameplayTag Id, UDataTable
         ReturnValue.Add(Tag);
     }
     return ReturnValue;
+}
+
+FLinearColor UCppDefaults::GetBotMainColor()
+{
+    return GetMutableDefault<USkywayDeveloperSettings>()->GetBotMainColor();
+}
+
+void UCppDefaults::SetBotMainColor(FLinearColor NewColor)
+{
+    GetMutableDefault<USkywayDeveloperSettings>()->SetBotMainColor(NewColor);
+}
+
+FLinearColor UCppDefaults::GetBotSecondColor()
+{
+    return GetMutableDefault<USkywayDeveloperSettings>()->GetBotSecondColor();
+}
+
+void UCppDefaults::SetBotSecondColor(FLinearColor NewColor)
+{
+    GetMutableDefault<USkywayDeveloperSettings>()->SetBotSecondColor(NewColor);
 }
