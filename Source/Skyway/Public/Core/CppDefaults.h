@@ -15,4 +15,16 @@ class SKYWAY_API UCppDefaults : public UBlueprintFunctionLibrary
 public:
     UFUNCTION(BlueprintPure)
     static TArray<FGameplayTag> GetChildrensByTag(FGameplayTag Id, UDataTable* DataTable);
+
+    UFUNCTION(BlueprintPure)
+    static FLinearColor GetBotMainColor();
+
+    UFUNCTION(BlueprintCallable)
+    static void SetBotMainColor(FLinearColor NewColor);
+
+    UFUNCTION(BlueprintPure)
+    static FLinearColor GetBotSecondColor();
+
+    UFUNCTION(BlueprintCallable)
+    static void SetBotSecondColor(FLinearColor NewColor);
 };
