@@ -4,6 +4,7 @@
 #include "Kismet/KismetSystemLibrary.h"
 #include "Net/UnrealNetwork.h"
 #include "Components/BoxComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 ABaseCharacter::ABaseCharacter() : Super()
 {
@@ -70,4 +71,12 @@ void ABaseCharacter::OnWeaponCollisionBeginOverlapHandler( //
     if (OtherCharacter->ID == this->ID) return;
     OtherCharacter->TakeDamage(GetWeaponDamage(), FDamageEvent(UDamageType::StaticClass()), GetController(), this);
     Server_DisableWeaponCollision();
+    OnWeaponCollisionBeginOverlapEvent(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex, bFromSweep, SweepResult);
+}
+
+void ABaseCharacter::Recoil(float MultiplierForce)
+{
+    const float ForceBack = -1000000.0f, ForceZ = 2000000.0f;
+    FVector ResultForce = (GetActorForwardVector() * ForceBack + FVector(0.f, 0.f, ForceZ)) * MultiplierForce;
+    GetCharacterMovement()->AddForce(ResultForce);
 }

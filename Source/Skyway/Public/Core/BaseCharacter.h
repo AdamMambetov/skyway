@@ -49,11 +49,23 @@ public:
     void Server_DisableWeaponCollision();
     bool Server_DisableWeaponCollision_Validate();
     void Server_DisableWeaponCollision_Implementation();
-
+    
+    UFUNCTION(BlueprintCallable, Category = "BaseCharacter")
+    void Recoil(float MultiplierForce = 1.f);
+    
 protected:
     UFUNCTION(BlueprintNativeEvent, Category = "BaseCharacter")
     float GetWeaponDamage();
     float GetWeaponDamage_Implementation() { return 0.f; }
+
+    UFUNCTION(BlueprintImplementableEvent, Category = "BaseCharacter")
+    void OnWeaponCollisionBeginOverlapEvent(    //
+        UPrimitiveComponent* OverlappedComponent, //
+        AActor* OtherActor,                       //
+        UPrimitiveComponent* OtherComp,           //
+        int32 OtherBodyIndex,                     //
+        bool bFromSweep,                          //
+        const FHitResult& SweepResult);
 
 private:
     UFUNCTION(Category = "BaseCharacter")
@@ -64,6 +76,7 @@ private:
         int32 OtherBodyIndex,                     //
         bool bFromSweep,                          //
         const FHitResult& SweepResult);
+    
 
 private:
     UPROPERTY(EditAnywhere, BlueprintGetter = GetId, BlueprintSetter = SetId, Category = "AI")
