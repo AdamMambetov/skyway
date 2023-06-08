@@ -27,4 +27,10 @@ public:
 
     UFUNCTION(BlueprintCallable)
     static void SetBotSecondColor(FLinearColor NewColor);
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    static int32 GetGraphicIndex();
+
+    UFUNCTION(BlueprintCallable)
+    static void SetGraphicIndex(int32 NewGraphicIndex);
 };

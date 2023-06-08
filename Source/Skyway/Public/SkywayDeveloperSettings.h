@@ -23,10 +23,17 @@ public:
 
     void SetBotSecondColor(FLinearColor NewColor);
 
+    void SetGraphicIndex(int32 NewGraphicIndex);
+
+    int32 GetGraphicIndex() { return GraphicIndex; };
+
 protected:
     UPROPERTY(EditAnywhere, Config, Category = "Bot", meta = (DisplayName = "Bot Main Color"))
     FLinearColor BotMainColor;
 
     UPROPERTY(EditAnywhere, Config, Category = "Bot", meta = (DisplayName = "Bot Second Color"))
     FLinearColor BotSecondColor;
+
+    UPROPERTY(EditAnywhere, Config, Category = "Bot", meta = (DisplayName = "Graphic Index"))
+    int32 GraphicIndex;
 };
