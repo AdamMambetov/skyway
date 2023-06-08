@@ -13,3 +13,9 @@ void USkywayDeveloperSettings::SetBotSecondColor(FLinearColor NewColor)
     BotSecondColor = NewColor;
     SaveConfig();
 }
+
+void USkywayDeveloperSettings::SetGraphicIndex(int32 NewGraphicIndex)
+{
+    GraphicIndex = NewGraphicIndex;
+    SaveConfig();
+}

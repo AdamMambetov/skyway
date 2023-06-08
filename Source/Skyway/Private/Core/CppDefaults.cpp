@@ -40,3 +40,13 @@ void UCppDefaults::SetBotSecondColor(FLinearColor NewColor)
 {
     GetMutableDefault<USkywayDeveloperSettings>()->SetBotSecondColor(NewColor);
 }
+
+int32 UCppDefaults::GetGraphicIndex()
+{
+    return GetMutableDefault<USkywayDeveloperSettings>()->GetGraphicIndex();
+}
+
+void UCppDefaults::SetGraphicIndex(int32 NewGraphicIndex)
+{
+    GetMutableDefault<USkywayDeveloperSettings>()->SetGraphicIndex(NewGraphicIndex);
+}
