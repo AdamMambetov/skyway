@@ -8,4 +8,5 @@ enum class ECharacters : uint8
     Slime UMETA(DisplayName = "Slime"),
     Driller UMETA(DisplayName = "Driller"),
     Smasher UMETA(DisplayName = "Smasher"),
+    FlyingRobot UMETA(DisplayName = "Flying Robot"),
 };
