@@ -3,22 +3,24 @@
 #include "Core/CppDefaults.h"
 #include "GameplayTagContainer.h"
 #include "SkywayDeveloperSettings.h"
+#include "Engine/DataTable.h"
+#include "GameplayTagsSettings.h"
 
 TArray<FGameplayTag> UCppDefaults::GetChildrensByTag(FGameplayTag Id, UDataTable* DataTable)
 {
-    TArray<FGameplayTag> ReturnValue;
-    if (!Id.IsValid() || !DataTable) return ReturnValue;
+    TArray<FGameplayTag> ReturnArray;
+    if (!Id.IsValid() || !DataTable) return ReturnArray;
 
     auto RowNames = DataTable->GetRowNames();
     for (const auto& RowName : RowNames)
     {
         FGameplayTag Tag = FGameplayTag::RequestGameplayTag(RowName);
 
-            if (!Tag.MatchesTag(Id)) continue;
+        if (!Tag.MatchesTag(Id)) continue;
 
-        ReturnValue.Add(Tag);
+        ReturnArray.Add(Tag);
     }
-    return ReturnValue;
+    return ReturnArray;
 }
 
 FLinearColor UCppDefaults::GetBotMainColor()
@@ -49,4 +51,17 @@ int32 UCppDefaults::GetGraphicIndex()
 void UCppDefaults::SetGraphicIndex(int32 NewGraphicIndex)
 {
     GetMutableDefault<USkywayDeveloperSettings>()->SetGraphicIndex(NewGraphicIndex);
+}
+
+TArray<UDataTable*> UCppDefaults::GetDataTableList()
+{
+    TArray<UDataTable*> ReturnArray;
+    auto TagSettings = GetMutableDefault<UGameplayTagsSettings>();
+
+    for (const auto& Table : TagSettings->GameplayTagTableList)
+    {
+        ReturnArray.Add(Cast<UDataTable>(Table.ResolveObject()));
+    }
+
+    return ReturnArray;
 }
