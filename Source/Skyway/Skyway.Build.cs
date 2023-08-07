@@ -17,6 +17,7 @@ public class Skyway : ModuleRules
 			"GameplayTasks",
 			"NavigationSystem",
 			"GameplayTags",
+			"DeveloperSettings",
 		});
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
