@@ -55,6 +55,13 @@
 		{
 			"Name": "SpeedTreeImporter",
 			"Enabled": false
+		},
+		{
+			"Name": "OnlineSubsystemGooglePlay",
+			"Enabled": false,
+			"SupportedTargetPlatforms": [
+				"Android"
+			]
 		}
 	],
 	"TargetPlatforms": [
