@@ -5,10 +5,12 @@ using System.Collections.Generic;
 
 public class SkywayTarget : TargetRules
 {
-	public SkywayTarget( TargetInfo Target) : base(Target)
+	public SkywayTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Game;
-		DefaultBuildSettings = BuildSettingsVersion.V2;
-		ExtraModuleNames.AddRange( new string[] { "Skyway" } );
+		DefaultBuildSettings = BuildSettingsVersion.V7;
+		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_8;
+		CppStandard = CppStandardVersion.Cpp20;
+		ExtraModuleNames.AddRange(new string[] { "Skyway" });
 	}
 }

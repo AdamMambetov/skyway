@@ -17,3 +17,4 @@ Content/Developers
 *.xcworkspace
 *.code-workspace
 *.ignore
+Makefile

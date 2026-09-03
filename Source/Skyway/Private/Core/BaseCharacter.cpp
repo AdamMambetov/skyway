@@ -4,6 +4,8 @@
 #include "Kismet/KismetSystemLibrary.h"
 #include "Net/UnrealNetwork.h"
 #include "Components/BoxComponent.h"
+#include "Engine/DamageEvents.h"
+#include "GameFramework/DamageType.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
 ABaseCharacter::ABaseCharacter() : Super()

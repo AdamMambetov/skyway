@@ -1,6 +1,6 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "5.0",
+	"EngineAssociation": "{D61CC232-685C-4943-8FAB-974883F84ABF}",
 	"Category": "",
 	"Description": "",
 	"Modules": [
@@ -62,6 +62,10 @@
 			"SupportedTargetPlatforms": [
 				"Android"
 			]
+		},
+		{
+			"Name": "ChaosCloth",
+			"Enabled": false
 		}
 	],
 	"TargetPlatforms": [
